@@ -1,0 +1,16 @@
+[
+{
+  "modid": "netherhelm",
+  "name": "Nether Helm",
+  "description": "A mod that adds a helmet which teleports you to the nether, but stays behind.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["its_meow"],
+  "credits": "its_meow: programming, BuiltBroken: commission",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
