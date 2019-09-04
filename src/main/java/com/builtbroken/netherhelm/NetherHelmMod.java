@@ -1,5 +1,7 @@
 package com.builtbroken.netherhelm;
 
+import java.util.function.Supplier;
+
 import org.apache.logging.log4j.LogManager;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,9 +20,11 @@ import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber(modid = NetherHelmMod.MODID)
 @Mod(modid = NetherHelmMod.MODID, name = NetherHelmMod.NAME, version = NetherHelmMod.VERSION)
@@ -47,7 +51,11 @@ public class NetherHelmMod {
             if(item != null) {
                 if(item instanceof ItemArmor) {
                     if(!(item instanceof ItemMimicArmor)) {
-                        event.getRegistry().register(new ItemMimicArmor((ItemArmor) item));
+                        ItemMimicArmor mimic = new ItemMimicArmor((ItemArmor) item);
+                        if(FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+                            Supplier<Runnable> runMe = () -> () -> mimic.setTileEntityItemStackRenderer(new MimicArmorTEISR());
+                        }
+                        event.getRegistry().register(mimic);
                     }
                 } else {
                     LogManager.getLogger().warn("There is a registry for " + armor + ", but it is not an equippable armor!");
