@@ -10,15 +10,18 @@ import net.minecraft.item.ItemStack;
 public class ItemMimicArmor extends ItemArmor {
     
     public final ItemArmor parent;
+    public final ItemStack parentStack;
 
     public ItemMimicArmor(ItemArmor parent) {
         super(parent.getArmorMaterial(), parent.renderIndex, parent.getEquipmentSlot());
         if(parent instanceof ItemMimicArmor) {
             throw new RuntimeException("Seriously?");
         }
-        this.setTranslationKey(parent.getTranslationKey());
+        this.setTranslationKey(parent.getTranslationKey().replaceFirst("item.", ""));
         this.setRegistryName(NetherHelmMod.MODID, "nether_helm_" + parent.getRegistryName().getPath());
         this.parent = parent;
+        this.parentStack = new ItemStack(parent);
+        this.setCreativeTab(null);
     }
 
     @Override

@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "oeo",
+        "o o"
+    ],
+    "key":
+    {
+        "e":
+        {
+            "item": "minecraft:ender_eye",
+            "data": 0
+        },
+        "o":
+        {
+        	"item": "minecraft:obsidian",
+        	"data": 0
+        }
+    },
+    "result":
+    {
+        "item": "netherhelm:nether_helm_component",
+        "count": 1,
+        "data": 0
+    }
+}

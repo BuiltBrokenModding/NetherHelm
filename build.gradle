@@ -43,3 +43,11 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+
+
+jar {
+     manifest.mainAttributes(
+            "Implementation-Title": archivesBaseName,
+            "Implementation-Version": project.version,
+            "FMLAT": "netherhelm_at.cfg")
+}
